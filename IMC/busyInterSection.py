@@ -8,7 +8,7 @@ def getResult(arrival, street):
 	res = []
 
 	for i in range(n):
-		res.add(i)
+		res.append(i)
 
 		if street[i] == 0:
 			frt_ave_que.append(i)
@@ -27,8 +27,8 @@ def getResult(arrival, street):
 		# if not frt_ave_que and not main_ave_que:
 		# 	break
 
-		frt_flag = len(frt_ave_que) > 0 and arrival[frt_ave_que.top()] <= arrivalTime
-		main_flag = len(main_ave_que) > 0 and arrival.get(main_ave_que.top()) <= arrivalTime
+		frt_flag = len(frt_ave_que) > 0 and arrival[frt_ave_que[-1]] <= arrivalTime
+		main_flag = len(main_ave_que) > 0 and arrival[main_ave_que[-1]] <= arrivalTime
 
 		preMove = True
 
@@ -49,14 +49,20 @@ def getResult(arrival, street):
 			prevState = 1
 		elif frt_flag:
 			k = frt_ave_que.popleft()
-			res.[k] = arrivalTime
+			res[k] = arrivalTime
 			prevState = 0
 		else:
 			if frt_ave_que and main_ave_que:
-				arrivalTime = min(arrival[frt_ave_que.top()], arrival[main_ave_que.top()])
+				arrivalTime = min(arrival[frt_ave_que[-1]], arrival[main_ave_que[-1]])
 			elif frt_ave_que:
-				arrivalTime = arrival[frt_ave_que.top()]
+				arrivalTime = arrival[frt_ave_que[-1]]
 			elif main_ave_que:
-				arrivalTime = arrival[main_ave_que.top()]
+				arrivalTime = arrival[main_ave_que[-1]]
 
+			preMove = False
+			continue
+		arrivalTime += 1
 
+	return res
+
+print(getResult([0,0,1,4], [0,1,1,0]))
