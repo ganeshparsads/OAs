@@ -2,7 +2,7 @@ import heapq
 from collections import deque
 
 class Solution:
-	def merge(self, intervals, points):
+	def lighting(self, intervals, points):
 		intervals.sort()
 		dq = deque(intervals)
 		minHeap = []
@@ -38,4 +38,4 @@ intervals = [[2, 4], [2, 7], [2, 9], [2, 11], [2, 12]]
 
 points = [37, 7, 5, 14, 33, 40, 7]
 
-print(obj.merge(intervals, points))
+print(obj.lighting(intervals, points))
