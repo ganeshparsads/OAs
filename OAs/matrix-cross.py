@@ -37,17 +37,18 @@ result_row = []
 # go through each row
 for i in range(n):
 	counter = countRows[i]
+	keys = list(counter.keys())
 	tempRow = []
 	for j in range(m):
 		if len(counter) > 2:
 			tempRow.append((False, -1))
 			continue
 		elif len(counter) == 1:
-			tempRow.append((True, counter.keys()[0]))
+			tempRow.append((True, keys[0]))
 			continue
 		elif len(counter) == 2 and counter[ip[i][j]] == 1:
-			idx = counter.keys().index(ip[i][j])
-			ele = counter.keys()[idx-1]
+			idx = keys.index(ip[i][j])
+			ele = keys[idx-1]
 			tempRow.append((True, ele))
 		else:
 			tempRow.append((False, -1))
@@ -56,17 +57,18 @@ for i in range(n):
 result_col = []
 for k in range(m):
 	counter = countCols[k]
+	keys = list(counter.keys())
 	tempCol = []
 	for i in range(n):
 		if len(counter) > 2:
 			tempCol.append((False, -1))
 			continue
 		elif len(counter) == 1:
-			tempCol.append((True, counter.keys()[0]))
+			tempCol.append((True, keys[0]))
 			continue
 		elif len(counter) == 2 and counter[ip[i][k]] == 1:
-			idx = counter.keys().index(ip[i][k])
-			ele = counter.keys()[idx-1]
+			idx = keys.index(ip[i][k])
+			ele = keys[idx-1]
 			tempCol.append((True, ele))
 		else:
 			tempCol.append((False, -1))
